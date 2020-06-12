@@ -9,11 +9,14 @@ import { getHashParams } from './AutoSearch';
  */
 
 const PlaylistDisplay = (props) => {
-  const { playlists } = props;
+  const { playlists, filter } = props;
+
+  const filteredPlaylists = filter !== '' ? playlists.filter((playlist) => playlist.title && playlist.title.includes(filter)) : playlists;
+
   return (
     <div>
-      {playlists !== []
-        ? playlists.map((playlist, index) => (
+      {filteredPlaylists !== []
+        ? filteredPlaylists.map((playlist, index) => (
           <Link key={index.toString()} to={`/playlist/${playlist.title}#access_token=${getHashParams().access_token}`}>
             <Playlist playlist={playlist} />
           </Link>

@@ -11,6 +11,7 @@ import PlaylistForm from './PlaylistForm';
 
 const App = () => {
   const [playlists, setPlaylists] = useState([]);
+  const [searchPlaylist, setSearchPlaylist] = useState('');
 
   // When mounting, pull the /playlists objects from the server.
   useEffect(() => {
@@ -31,8 +32,8 @@ const App = () => {
       </a>
       <Router>
         <Route exact path="/">
-          <Search placeholder="Search a playlist..." />
-          <PlaylistDisplay playlists={playlists} />
+          <Search placeholder="Search a playlist..." onSearchChange={setSearchPlaylist} value={searchPlaylist} />
+          <PlaylistDisplay playlists={playlists} filter={searchPlaylist} />
         </Route>
         <Route
           path="/playlist/:playlistName"

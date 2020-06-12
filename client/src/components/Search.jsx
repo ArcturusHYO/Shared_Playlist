@@ -9,7 +9,7 @@ const Search = (props) => {
     <FormControl
       type="text"
       placeholder={placeholder}
-      onChange={onSearchChange}
+      onChange={(e) => onSearchChange(e.target.value)}
       name={name}
       value={value}
     />
